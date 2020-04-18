@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlazorPokemon.Web.Pages
@@ -12,15 +13,16 @@ namespace BlazorPokemon.Web.Pages
     {
         public IEnumerable<Pokemon> Pokemons { get; set; }
 
-        protected override Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
-            LoadPokemons();
+            await Task.Run(LoadPokemons);
 
-            return base.OnInitializedAsync();
         }
 
         private void LoadPokemons()
         {
+            Thread.Sleep(3000);
+
             string[] line;
             char[] seperators = { ',' };
 
