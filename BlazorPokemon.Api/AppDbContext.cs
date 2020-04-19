@@ -1,37 +1,35 @@
 ﻿using BlazorPokemon.Models;
-using Microsoft.AspNetCore.Components;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace BlazorPokemon.Web.Pages
+namespace BlazorPokemon.Api
 {
-    public class PokemonListBase : ComponentBase
+    public class AppDbContext : DbContext
     {
-        public IEnumerable<Pokemon> Pokemons { get; set; }
-
-        protected override async Task OnInitializedAsync()
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            await Task.Run(LoadPokemons);
-
         }
+        public DbSet<Pokemon> Pokemons { get; set; }
 
-        private void LoadPokemons()
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Thread.Sleep(3000);
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Pokemon>().HasKey(p => p.PokemondId);
 
             string[] line;
             char[] seperators = { ',' };
-            StreamReader sr = new StreamReader("pokemon.csv");
+            var sr = new StreamReader("pokemon.csv");
             int pokemonId = 1;
-            string lines = sr.ReadLine();
-            var pokemons = new List<Pokemon>();
-            while ((lines = sr.ReadLine()) != null)
+
+            while ((_ = sr.ReadLine()) != null)
             {
-                line = lines.Split(seperators, StringSplitOptions.None);
+                line = sr.ReadLine().Split(seperators, StringSplitOptions.None);
 
                 int pokemonNumber = int.Parse(line[0]);
                 string name = line[1];
@@ -47,17 +45,10 @@ namespace BlazorPokemon.Web.Pages
                 int generation = int.Parse(line[11]);
                 bool legendary = bool.Parse(line[12]);
 
-             
-                var pokemon = new Pokemon(pokemonId, pokemonNumber, name, type1, type2, total, hP, attack, defense,
-                    speedAttack, speedDefense, speed, generation, legendary);
-
-                pokemons.Add(pokemon);
+                modelBuilder.Entity<Pokemon>().HasData((Pokemon)new Pokemon(pokemonId, pokemonNumber, name, type1, type2, total, hP, attack, defense,
+                    speedAttack, speedDefense, speed, generation, legendary)); ;
                 pokemonId++;
             }
-
-            Pokemons = pokemons;
         }
-
-
     }
 }

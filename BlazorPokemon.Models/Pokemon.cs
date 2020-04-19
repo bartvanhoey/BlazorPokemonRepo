@@ -10,9 +10,10 @@ namespace BlazorPokemon.Models
 
         }
 
-        public Pokemon(int id, string name, string type1, string type2, int total, int hP, int attack, int defense, int speedAttack, int speedDefense, int speed, int generation, bool legendary)
+        public Pokemon(int pokemonId, int pokemonNumber, string name, string type1, string type2, int total, int hP, int attack, int defense, int speedAttack, int speedDefense, int speed, int generation, bool legendary)
         {
-            Id = id;
+            PokemondId = pokemonId;
+            PokemonNumber = pokemonNumber;
             Name = name;
             Type1 = type1;
             Type2 = type2;
@@ -27,8 +28,9 @@ namespace BlazorPokemon.Models
             Legendary = legendary;
         }
 
+        
         public int PokemondId { get; set; }
-        public int Id { get; set; }
+        public int PokemonNumber { get; set; }
         public string Name { get; set; }
         public string Type1 { get; set; }
         public string Type2 { get; set; }
