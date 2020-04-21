@@ -5,12 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="pokemon.csv" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Models\pokemon.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="pokemon.csv">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
