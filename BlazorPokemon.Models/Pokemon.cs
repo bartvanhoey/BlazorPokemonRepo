@@ -28,7 +28,25 @@ namespace BlazorPokemon.Models
             Legendary = legendary;
         }
 
-        
+        public Pokemon(int pokemonNumber, string name, string type1, string type2, in int total, in int hP, in int attack, in int defense, in int speedAttack, in int speedDefense, in int speed, in int generation, in bool legendary)
+        {
+            PokemonNumber = pokemonNumber;
+            Name = name;
+            Type1 = type1;
+            Type2 = type2;
+            Total = total;
+            HP = hP;
+            Attack = attack;
+            Defense = defense;
+            SpeedAttack = speedAttack;
+            SpeedDefense = speedDefense;
+            Speed = speed;
+            Generation = generation;
+            Legendary = legendary;
+            PhotoPath = "images/" + Name.ToLowerInvariant() + ".png";
+        }
+
+
         public int PokemondId { get; set; }
         public int PokemonNumber { get; set; }
         public string Name { get; set; }
