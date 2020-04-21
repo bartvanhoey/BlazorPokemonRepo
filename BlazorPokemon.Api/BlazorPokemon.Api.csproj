@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200421151523_PokemonType.cs" />
+    <Compile Remove="Migrations\20200421151523_PokemonType.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="pokemon.csv">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>

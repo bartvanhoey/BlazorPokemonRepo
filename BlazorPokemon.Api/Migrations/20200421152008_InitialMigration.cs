@@ -10,12 +10,12 @@ namespace BlazorPokemon.Api.Migrations
                 name: "Pokemons",
                 columns: table => new
                 {
-                    PokemondId = table.Column<int>(nullable: false)
+                    PokemonId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PokemonNumber = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Type1 = table.Column<string>(nullable: true),
-                    Type2 = table.Column<string>(nullable: true),
+                    TypeOneId = table.Column<int>(nullable: false),
+                    TypeTwoId = table.Column<int>(nullable: false),
                     Total = table.Column<int>(nullable: false),
                     HP = table.Column<int>(nullable: false),
                     Attack = table.Column<int>(nullable: false),
@@ -29,7 +29,21 @@ namespace BlazorPokemon.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pokemons", x => x.PokemondId);
+                    table.PrimaryKey("PK_Pokemons", x => x.PokemonId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PokemonTypes",
+                columns: table => new
+                {
+                    PokemonTypeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PokemonTypeNumber = table.Column<int>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PokemonTypes", x => x.PokemonTypeId);
                 });
         }
 
@@ -37,6 +51,9 @@ namespace BlazorPokemon.Api.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Pokemons");
+
+            migrationBuilder.DropTable(
+                name: "PokemonTypes");
         }
     }
 }
