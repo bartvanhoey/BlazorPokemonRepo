@@ -9,31 +9,12 @@ namespace BlazorPokemon.Models
         {
 
         }
-
-        public Pokemon(int pokemonId, int pokemonNumber, string name, string type1, string type2, int total, int hP, int attack, int defense, int speedAttack, int speedDefense, int speed, int generation, bool legendary)
-        {
-            PokemondId = pokemonId;
-            PokemonNumber = pokemonNumber;
-            Name = name;
-            Type1 = type1;
-            Type2 = type2;
-            Total = total;
-            HP = hP;
-            Attack = attack;
-            Defense = defense;
-            SpeedAttack = speedAttack;
-            SpeedDefense = speedDefense;
-            Speed = speed;
-            Generation = generation;
-            Legendary = legendary;
-        }
-
-        public Pokemon(int pokemonNumber, string name, string type1, string type2, in int total, in int hP, in int attack, in int defense, in int speedAttack, in int speedDefense, in int speed, in int generation, in bool legendary)
+        public Pokemon(int pokemonNumber, string name, int typeOneId, int typeTwoId, in int total, in int hP, in int attack, in int defense, in int speedAttack, in int speedDefense, in int speed, in int generation, in bool legendary)
         {
             PokemonNumber = pokemonNumber;
             Name = name;
-            Type1 = type1;
-            Type2 = type2;
+            TypeOneId = typeOneId;
+            TypeTwoId = typeTwoId;
             Total = total;
             HP = hP;
             Attack = attack;
@@ -47,11 +28,11 @@ namespace BlazorPokemon.Models
         }
 
 
-        public int PokemondId { get; set; }
+        public int PokemonId { get; set; }
         public int PokemonNumber { get; set; }
         public string Name { get; set; }
-        public string Type1 { get; set; }
-        public string Type2 { get; set; }
+        public int TypeOneId { get; set; }
+        public int TypeTwoId { get; set; }
         public int Total { get; set; }
         public int HP { get; set; }
         public int Attack { get; set; }
@@ -61,19 +42,6 @@ namespace BlazorPokemon.Models
         public int Speed { get; set; }
         public int Generation { get; set; }
         public bool Legendary { get; set; }
-        public string PhotoPath
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(_photoPath))
-                {
-                    return "images/" + Name.ToLowerInvariant() + ".png";
-                }
-                return _photoPath;
-
-            }
-
-            set { _photoPath = value; }
-        }
+        public string PhotoPath { get; set; }
     }
 }

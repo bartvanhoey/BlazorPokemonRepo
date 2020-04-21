@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorPokemon.Api.Models;
 
 namespace BlazorPokemon.Web.Pages
 {
@@ -16,43 +17,37 @@ namespace BlazorPokemon.Web.Pages
         protected override async Task OnInitializedAsync()
         {
             await Task.Run(LoadPokemons);
-
         }
 
         private void LoadPokemons()
         {
             Thread.Sleep(3000);
 
-            string[] line;
             char[] seperators = { ',' };
-            StreamReader sr = new StreamReader("pokemon.csv");
-            int pokemonId = 1;
-            string lines = sr.ReadLine();
+            var sr = new StreamReader("pokemon.csv");
+            var lines = sr.ReadLine();
             var pokemons = new List<Pokemon>();
             while ((lines = sr.ReadLine()) != null)
             {
-                line = lines.Split(seperators, StringSplitOptions.None);
-
-                int pokemonNumber = int.Parse(line[0]);
-                string name = line[1];
-                string type1 = line[2];
-                string type2 = line[3];
-                int total = int.Parse(line[4]);
-                int hP = int.Parse(line[5]);
-                int attack = int.Parse(line[6]);
-                int defense = int.Parse(line[7]);
-                int speedAttack = int.Parse(line[8]);
-                int speedDefense = int.Parse(line[9]);
-                int speed = int.Parse(line[10]);
-                int generation = int.Parse(line[11]);
-                bool legendary = bool.Parse(line[12]);
-
+                var line = lines.Split(seperators, StringSplitOptions.None);
+                var pokemonNumber = int.Parse(line[0]);
+                var name = line[1];
+                var type1 = PokemonUtil.GetPokemonTypeIdByValue(line[2]);
+                var type2 = PokemonUtil.GetPokemonTypeIdByValue(line[3]);
+                var total = int.Parse(line[4]);
+                var hP = int.Parse(line[5]);
+                var attack = int.Parse(line[6]);
+                var defense = int.Parse(line[7]);
+                var speedAttack = int.Parse(line[8]);
+                var speedDefense = int.Parse(line[9]);
+                var speed = int.Parse(line[10]);
+                var generation = int.Parse(line[11]);
+                var legendary = bool.Parse(line[12]);
              
-                var pokemon = new Pokemon(pokemonId, pokemonNumber, name, type1, type2, total, hP, attack, defense,
+                var pokemon = new Pokemon(pokemonNumber, name, type1, type2, total, hP, attack, defense,
                     speedAttack, speedDefense, speed, generation, legendary);
 
                 pokemons.Add(pokemon);
-                pokemonId++;
             }
 
             Pokemons = pokemons;
