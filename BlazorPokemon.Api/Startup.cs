@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorPokemon.Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -44,6 +45,15 @@ namespace BlazorPokemon.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
+                //dbContext.Database.EnsureDeleted();
+                //dbContext.Database.EnsureCreated();
+                //dbContext.SaveChanges();
+                dbContext.Initialize();
+            }
 
             app.UseEndpoints(endpoints =>
             {
