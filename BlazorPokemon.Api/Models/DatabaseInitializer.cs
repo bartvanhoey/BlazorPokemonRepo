@@ -10,7 +10,13 @@ namespace BlazorPokemon.Api.Models
     {
         public static void Initialize(this AppDbContext dbContext)
         {
-            if (!dbContext.Pokemons.Any())
+            if (!EnumerableExtensions.Any(dbContext.PokemonTypes))
+            {
+                dbContext.PokemonTypes.AddRange(PokemonUtil.PokemonTypes);
+                dbContext.SaveChanges();
+            }
+
+            if (!EnumerableExtensions.Any(dbContext.Pokemons))
             {
                 char[] seperators = { ',' };
                 var sr = new StreamReader("pokemon.csv");
@@ -21,8 +27,8 @@ namespace BlazorPokemon.Api.Models
                     var line = lines.Split(seperators, StringSplitOptions.None);
                     var pokemonNumber = int.Parse(line[0]);
                     var name = line[1];
-                    var type1 = line[2];
-                    var type2 = line[3];
+                    var type1 = PokemonUtil.GetPokemonTypeIdByValue(line[2]) ;
+                    var type2 = PokemonUtil.GetPokemonTypeIdByValue(line[3]);
                     var total = int.Parse(line[4]);
                     var hP = int.Parse(line[5]);
                     var attack = int.Parse(line[6]);
