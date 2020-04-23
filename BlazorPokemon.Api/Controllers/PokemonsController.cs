@@ -31,6 +31,7 @@ namespace BlazorPokemon.Api.Controllers
                     "Error retrieving data from the database");
             }
         }
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Pokemon>> GetPokemon(int id)
         {
@@ -41,6 +42,7 @@ namespace BlazorPokemon.Api.Controllers
                 {
                     return NotFound();
                 }
+
                 return result;
             }
             catch (Exception)
@@ -49,5 +51,29 @@ namespace BlazorPokemon.Api.Controllers
                     "Error retrieving data from the database");
             }
         }
+
+
+        [HttpPost]
+        public async Task<ActionResult<Pokemon>> CreatePokemon(Pokemon pokemon)
+        {
+            try
+            {
+                if (pokemon == null)
+                {
+                    return BadRequest();
+                }
+
+                var createdPokemon = await _pokemonRepository.AddPokemon(pokemon);
+
+                return CreatedAtAction(nameof(GetPokemon), new { id = 1 }, createdPokemon);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
+
+
     }
 }
