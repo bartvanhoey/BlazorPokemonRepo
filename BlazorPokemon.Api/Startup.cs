@@ -30,6 +30,9 @@ namespace BlazorPokemon.Api
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
             services.AddControllers();
+
+            services.AddScoped<IPokemonTypeRepository, PokemonTypeRepository>();
+            services.AddScoped<IPokemonRepository, PokemonRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
