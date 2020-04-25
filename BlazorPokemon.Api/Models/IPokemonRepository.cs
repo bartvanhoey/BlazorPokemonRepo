@@ -8,6 +8,7 @@ namespace BlazorPokemon.Api.Models
     {
         Task<IEnumerable<Pokemon>> GetPokemons();
         Task<Pokemon> GetPokemon(int pokemonId);
+        Task<Pokemon> GetPokemonByName(string name);
         Task<Pokemon> AddPokemon(Pokemon pokemon);
         Task<Pokemon> UpdatePokemon(Pokemon pokemon);
         void DeletePokemon(int pokemonId);

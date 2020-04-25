@@ -1,10 +1,9 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BlazorPokemon.Models
 {
     public class Pokemon
     {
-        private string _photoPath;
         public Pokemon()
         {
 
@@ -30,6 +29,8 @@ namespace BlazorPokemon.Models
 
         public int PokemonId { get; set; }
         public int PokemonNumber { get; set; }
+        [Required]
+        [MinLength(2)]
         public string Name { get; set; }
         public int TypeOneId { get; set; }
         public int TypeTwoId { get; set; }

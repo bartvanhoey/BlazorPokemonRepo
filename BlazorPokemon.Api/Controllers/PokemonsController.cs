@@ -63,6 +63,14 @@ namespace BlazorPokemon.Api.Controllers
                     return BadRequest();
                 }
 
+
+                var pokemonByName = await _pokemonRepository.GetPokemonByName(pokemon.Name);
+                if (pokemonByName != null)
+                {
+                    ModelState.AddModelError("name", "Pokemon name already in use");
+                    return BadRequest(ModelState);
+                }
+                
                 var createdPokemon = await _pokemonRepository.AddPokemon(pokemon);
 
                 return CreatedAtAction(nameof(GetPokemon), new { id = 1 }, createdPokemon);
