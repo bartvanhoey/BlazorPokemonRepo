@@ -25,6 +25,12 @@ namespace BlazorPokemon.Api.Models
                 .FirstOrDefaultAsync(e => e.PokemonId == pokemonId);
         }
 
+        public async Task<Pokemon> GetPokemonByName(string name)
+        {
+            return await _dbContext.Pokemons
+                .FirstOrDefaultAsync(e => e.Name == name);
+        }
+
         public async Task<Pokemon> AddPokemon(Pokemon pokemon)
         {
             var result = await _dbContext.Pokemons.AddAsync(pokemon);
