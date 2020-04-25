@@ -54,7 +54,7 @@ namespace BlazorPokemon.Api.Models
                 result.Defense = pokemon.Defense;
                 result.Attack = pokemon.Attack;
                 result.SpeedAttack = pokemon.SpeedAttack;
-                result.SpeedDefense= pokemon.SpeedDefense;
+                result.SpeedDefense = pokemon.SpeedDefense;
                 result.PokemonNumber = pokemon.PokemonNumber;
                 result.Generation = pokemon.Generation;
 
@@ -66,15 +66,15 @@ namespace BlazorPokemon.Api.Models
             return null;
         }
 
-        public async void DeletePokemon(int pokemonId)
+        public async Task<Pokemon> DeletePokemon(int pokemonId)
         {
             var result = await _dbContext.Pokemons
                 .FirstOrDefaultAsync(e => e.PokemonId == pokemonId);
-            if (result != null)
-            {
-                _dbContext.Pokemons.Remove(result);
-                await _dbContext.SaveChangesAsync();
-            }
+            if (result == null) return null;
+            _dbContext.Pokemons.Remove(result);
+            await _dbContext.SaveChangesAsync();
+            return result;
         }
+
     }
 }

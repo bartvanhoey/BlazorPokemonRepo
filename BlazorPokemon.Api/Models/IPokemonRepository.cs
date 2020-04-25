@@ -11,6 +11,6 @@ namespace BlazorPokemon.Api.Models
         Task<Pokemon> GetPokemonByName(string name);
         Task<Pokemon> AddPokemon(Pokemon pokemon);
         Task<Pokemon> UpdatePokemon(Pokemon pokemon);
-        void DeletePokemon(int pokemonId);
+        Task<Pokemon> DeletePokemon(int pokemonId);
     }
 }
