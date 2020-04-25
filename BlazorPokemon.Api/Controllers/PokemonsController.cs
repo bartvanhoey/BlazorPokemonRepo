@@ -82,6 +82,27 @@ namespace BlazorPokemon.Api.Controllers
             }
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<Pokemon>> UpdatePokemon(int id, Pokemon pokemon)
+        {
+            try
+            {
+                if (id != pokemon.PokemonId)
+                    return BadRequest("Pokemon ID mismatch");
+
+                var pokemonToUpdate = await _pokemonRepository.GetPokemon(id);
+
+                if (pokemonToUpdate == null)
+                    return NotFound($"Pokemon with Id = {id} not found");
+
+                return await _pokemonRepository.UpdatePokemon(pokemon);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error updating data");
+            }
+        }
 
     }
 }
