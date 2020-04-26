@@ -1,0 +1,29 @@
+name: Deploy To Azure
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    # checkout the repo
+    - uses: actions/checkout@master
+    
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.100 # Replace with specific dotnet core version
+    
+    # dotnet build and publish
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+    - name: dotnet publish
+      run: |
+        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+    - name: 'Run Azure webapp deploy action using publish profile credentials'
+      uses: azure/webapps-deploy@v1
+      with: 
+        app-name: BlazorPokemon # Replace with your app name
+        publish-profile: ${{ secrets BlazorPokemonSecret }} 
+        package: ${{env.DOTNET_ROOT}}/myapp 
