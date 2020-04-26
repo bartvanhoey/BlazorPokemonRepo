@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BlazorPokemon.Api.Models;
 using BlazorPokemon.Models;
@@ -125,7 +127,28 @@ namespace BlazorPokemon.Api.Controllers
                     "Error deleting data");
             }
         }
-           
+
+        [HttpGet("{search}")]
+        public async Task<ActionResult<IEnumerable<Pokemon>>> Search(string name, bool? legendary)
+        {
+            try
+            {
+                var result = await _pokemonRepository.Search(name, legendary);
+
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
+
 
     }
 }
