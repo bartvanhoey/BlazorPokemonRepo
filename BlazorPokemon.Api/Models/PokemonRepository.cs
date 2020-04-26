@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BlazorPokemon.Models;
 using Microsoft.EntityFrameworkCore;
@@ -76,5 +77,21 @@ namespace BlazorPokemon.Api.Models
             return result;
         }
 
+        public async Task<IEnumerable<Pokemon>> Search(string name, bool? legendary)
+        {
+            IQueryable<Pokemon> query = _dbContext.Pokemons;
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(e => e.Name.Contains(name));
+            }
+
+            if (legendary != null)
+            {
+                query = query.Where(e => e.Legendary == legendary);
+            }
+
+            return await query.ToListAsync();
+        }
     }
 }
