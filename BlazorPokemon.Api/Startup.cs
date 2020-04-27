@@ -52,6 +52,7 @@ namespace BlazorPokemon.Api
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
+                dbContext.Database.EnsureCreated();
                 dbContext.Initialize();
             }
 
