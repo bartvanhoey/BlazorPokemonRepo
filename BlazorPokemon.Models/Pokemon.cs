@@ -23,7 +23,7 @@ namespace BlazorPokemon.Models
             Speed = speed;
             Generation = generation;
             Legendary = legendary;
-            PhotoPath = "images/" + Name.ToLowerInvariant() + ".png";
+            PhotoPath = "images/" + Name.ToLowerInvariant().Replace(" ","-") + ".png";
         }
 
 
