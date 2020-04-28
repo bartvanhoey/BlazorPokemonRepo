@@ -2,24 +2,28 @@
 @page "/pokemondetails" 
 @inherits PokemonDetailsBase
 
-
-<div class="row justify-content-center m-3">
-    <div class="col-sm-8">
-        <div class="card">
-            <div class="card-header">
-                <h1>@Pokemon.Name</h1>
-            </div>
-            <div class="card-body text-center">
-                <img class="card-img-top" src="@Pokemon.PhotoPath" />
-                <h4>Pokemon ID : @Pokemon.PokemonId</h4>
-                <h4>TypeOne : @Pokemon.TypeOneId</h4>
-                <h4>TypeTwo : @Pokemon.TypeTwoId</h4>
-            </div>
-            <div class="card-footer text-center">
-                <a href="/" class="btn btn-primary">Back</a>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+@if (Pokemon == null) {
+    <div class="spinner"></div>
+}
+else {
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Pokemon.Name</h1>
+                </div>
+                <div class="card-body text-center">
+                    <img class="card-img-top" src="@Pokemon.PhotoPath" />
+                    <h4>Pokemon ID : @Pokemon.PokemonId</h4>
+                    <h4>TypeOne :  @(Pokemon.TypeOne == null ? "N/A" : Pokemon.TypeOne.Value)</h4>
+                    <h4>TypeTwo : @(Pokemon.TypeTwo == null ? "N/A" : Pokemon.TypeTwo.Value)</h4>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/" class="btn btn-primary">Back</a>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}

@@ -4,14 +4,16 @@ using BlazorPokemon.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlazorPokemon.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200428151804_PokemonTypeNullable")]
+    partial class PokemonTypeNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,9 +73,13 @@ namespace BlazorPokemon.Api.Migrations
 
                     b.HasKey("PokemonId");
 
-                    b.HasIndex("TypeOneId");
+                    b.HasIndex("TypeOneId")
+                        .IsUnique()
+                        .HasFilter("[TypeOneId] IS NOT NULL");
 
-                    b.HasIndex("TypeTwoId");
+                    b.HasIndex("TypeTwoId")
+                        .IsUnique()
+                        .HasFilter("[TypeTwoId] IS NOT NULL");
 
                     b.ToTable("Pokemons");
                 });
@@ -99,13 +105,13 @@ namespace BlazorPokemon.Api.Migrations
             modelBuilder.Entity("BlazorPokemon.Models.Pokemon", b =>
                 {
                     b.HasOne("BlazorPokemon.Models.PokemonType", "TypeOne")
-                        .WithMany()
-                        .HasForeignKey("TypeOneId")
+                        .WithOne()
+                        .HasForeignKey("BlazorPokemon.Models.Pokemon", "TypeOneId")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("BlazorPokemon.Models.PokemonType", "TypeTwo")
-                        .WithMany()
-                        .HasForeignKey("TypeTwoId")
+                        .WithOne()
+                        .HasForeignKey("BlazorPokemon.Models.Pokemon", "TypeTwoId")
                         .OnDelete(DeleteBehavior.NoAction);
                 });
 #pragma warning restore 612, 618
