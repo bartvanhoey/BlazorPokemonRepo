@@ -7,5 +7,6 @@ namespace BlazorPokemon.Web.Services
     public interface IPokemonService
     {
            Task<IEnumerable<Pokemon>> GetPokemons();
+           Task<Pokemon> GetPokemon(int id);
     }
 }

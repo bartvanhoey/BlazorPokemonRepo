@@ -15,6 +15,11 @@ namespace BlazorPokemon.Web.Services
             this.httpClient = httpClient;
         }
 
+        public async Task<Pokemon> GetPokemon(int id)
+        {
+            return await httpClient.GetJsonAsync<Pokemon>($"api/pokemons/{id}");
+        }
+
         public async Task<IEnumerable<Pokemon>> GetPokemons()
         {
             return await httpClient.GetJsonAsync<Pokemon[]>("api/pokemons");

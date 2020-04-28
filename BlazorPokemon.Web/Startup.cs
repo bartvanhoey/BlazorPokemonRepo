@@ -28,8 +28,9 @@ namespace BlazorPokemon.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddScoped<IPokemonService, PokemonService>();
-            services.AddHttpClient();
+            services.AddHttpClient<IPokemonService, PokemonService>(client => {
+                client.BaseAddress = new Uri("https://localhost:53956/");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
