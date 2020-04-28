@@ -23,7 +23,9 @@ namespace BlazorPokemon.Api.Models
         public async Task<Pokemon> GetPokemon(int pokemonId)
         {
             return await _dbContext.Pokemons
-                .FirstOrDefaultAsync(e => e.PokemonId == pokemonId);
+                .Include(p => p.TypeOne)
+                .Include(p => p.TypeTwo)
+                .FirstOrDefaultAsync(p => p.PokemonId == pokemonId);
         }
 
         public async Task<Pokemon> GetPokemonByName(string name)
