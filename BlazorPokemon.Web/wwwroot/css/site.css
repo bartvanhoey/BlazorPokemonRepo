@@ -208,3 +208,6 @@ app {
     }
 }
 
+.hideFooter {
+    display: none;
+}
