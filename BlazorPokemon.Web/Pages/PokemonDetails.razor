@@ -10,15 +10,18 @@ else {
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-header">
-                    <h1>@Pokemon.Name</h1>
+                    <h1>@Pokemon.Name @Coordinates</h1>
                 </div>
                 <div class="card-body text-center">
-                    <img class="card-img-top" src="@Pokemon.PhotoPath" />
+                    <img class="card-img-top" src="@Pokemon.PhotoPath"
+                         @onmousemove="@(e => Coordinates = $"x: {e.ClientX} y: {e.ClientY}")" />
+                    @* <img class="card-img-top" src="@Pokemon.PhotoPath" @onmousemove="@Mouse_Move" /> *@
                     <h4>Pokemon ID : @Pokemon.PokemonId</h4>
                     <h4>TypeOne :  @(Pokemon.TypeOne == null ? "N/A" : Pokemon.TypeOne.Value)</h4>
                     <h4>TypeTwo : @(Pokemon.TypeTwo == null ? "N/A" : Pokemon.TypeTwo.Value)</h4>
+                    <button class="btn btn-primary" @onclick="@Button_Click" >@ButtonText</button>
                 </div>
-                <div class="card-footer text-center">
+                <div class="card-footer text-center @CssClass">
                     <a href="/" class="btn btn-primary">Back</a>
                     <a href="#" class="btn btn-primary">Edit</a>
                     <a href="#" class="btn btn-danger">Delete</a>
