@@ -1,0 +1,16 @@
+@page "/editpokemon/{id}" 
+@inherits EditPokemonBase
+
+<EditForm Model="@Pokemon">
+    <h3>Edit Employee</h3>
+    <hr>
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label" >Name</label>
+        <div class="col-sm-10">
+            <InputText id="name" class="form-control" placeholder="Name" 
+                        @bind-Value="Pokemon.Name"></InputText>
+        </div>
+    </div>
+</EditForm>
+
+
