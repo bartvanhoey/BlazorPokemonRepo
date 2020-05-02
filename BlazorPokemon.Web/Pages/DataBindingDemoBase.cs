@@ -11,6 +11,5 @@ namespace BlazorPokemon.Web.Pages
         public string Colour { get; set; } = "background-color:gray";
 
         public string Description { get; set; } = string.Empty;
-
     }
 }
