@@ -16,6 +16,7 @@ namespace BlazorPokemon.Web.Pages
 
         [Inject]   
         public IPokemonService PokemonService { get; set; }
+        public bool ShowFooter { get; set; } =true;
         public IEnumerable<Pokemon> Pokemons { get; set; }
         protected override async Task OnInitializedAsync()
         {
