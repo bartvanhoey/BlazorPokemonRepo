@@ -8,8 +8,8 @@
     <img class="card-img-top imageThumbnail" src="@Pokemon.PhotoPath" />
     @if(ShowFooter) {
         <div class="card-footer text-center">
-            <a href="@($"Pokemondetails/{Pokemon.PokemonId}")" class="btn btn-primary m-1">View</a>
-            <a href="#" class="btn btn-primary m-1">Edit</a>
+            <a href="@($"pokemondetails/{Pokemon.PokemonId}")" class="btn btn-primary m-1">View</a>
+            <a href="@($"editpokemon/{Pokemon.PokemonId}")" class="btn btn-primary m-1">Edit</a>
             <a href="#" class="btn btn-danger m-1">Delete</a>
         </div>
     }
