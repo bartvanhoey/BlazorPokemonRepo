@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj": {}
+    "C:\\_Data\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj": {}
   },
   "projects": {
-    "C:\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj": {
+    "C:\\_Data\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj",
+        "projectUniqueName": "C:\\_Data\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj",
         "projectName": "BlazorPokemon.Models",
-        "projectPath": "C:\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj",
+        "projectPath": "C:\\_Data\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj",
         "packagesPath": "C:\\Users\\bartv\\.nuget\\packages\\",
-        "outputPath": "C:\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\obj\\",
+        "outputPath": "C:\\_Data\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

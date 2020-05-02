@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R8mqvL2M2BWcLtbJSDtbrTyYqU5/ko+8a4TTxUD35hy/MKSsvzY9z8WzXJLwSb4x+6pUsyTG+cmfkd4f/ELJwg==",
+  "dgSpecHash": "2GUwLwViZeSiXvfAO6CI7ifhEgrNbtzRlDQ77xnYP+fPp7CHV7OP710tuCVDnRx0wHc+x4bfUC0R2TOnsTC7kQ==",
   "success": true,
-  "projectFilePath": "C:\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj",
+  "projectFilePath": "C:\\_Data\\Blazor\\BlazorPokemonRepo\\BlazorPokemon.Models\\BlazorPokemon.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bartv\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\bartv\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
