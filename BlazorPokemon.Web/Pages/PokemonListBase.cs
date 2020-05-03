@@ -18,20 +18,20 @@ namespace BlazorPokemon.Web.Pages
         public IPokemonService PokemonService { get; set; }
         public bool ShowFooter { get; set; } =true;
         public IEnumerable<Pokemon> Pokemons { get; set; }
-        public int SelectedEmployeesCount { get; set; } = 0;
+        public int SelectedPokemonsCount { get; set; } = 0;
         protected override async Task OnInitializedAsync()
         {
             Pokemons = (await PokemonService.GetPokemons()).ToList();
         }
 
-        protected void EmployeeSelectionChanged(bool isSelected) {
+        protected void PokemonSelectionChanged(bool isSelected) {
             if (isSelected)
             {
-                SelectedEmployeesCount++;
+                SelectedPokemonsCount++;
             }
             else
             {
-                SelectedEmployeesCount--;
+                SelectedPokemonsCount--;
             }
         }
     }

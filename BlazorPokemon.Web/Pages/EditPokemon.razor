@@ -2,7 +2,7 @@
 @inherits EditPokemonBase
 
 <EditForm Model="@Pokemon">
-    <h3>Edit Employee</h3>
+    <h3>Edit Pokemon</h3>
     <hr>
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label" >Name</label>
@@ -10,7 +10,31 @@
             <InputText id="name" class="form-control" placeholder="Name" 
                         @bind-Value="Pokemon.Name"></InputText>
         </div>
+    </div> 
+    <div class="form-group row">
+        <label for="typeOne" class="col-sm-2 col-form-label">Type One</label>
+        <div class="col-sm-10">
+            <InputSelect id="typeOne" @bind-Value="TypeOneId" class="form-control" >
+                  @foreach (var type in PokemonTypes)
+                  {
+                      <option value="@type.PokemonTypeId">@type.Value</option>
+                  }          
+            </InputSelect>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="typeTwo" class="col-sm-2 col-form-label">Type Two</label>
+        <div class="col-sm-10">
+            <InputSelect id="typeTwo" @bind-Value="TypeTwoId" class="form-control" >
+                  @foreach (var type in PokemonTypes)
+                  {
+                      <option value="@type.PokemonTypeId">@type.Value</option>
+                  }          
+            </InputSelect>
+        </div>
     </div>
 </EditForm>
+
+
 
 
