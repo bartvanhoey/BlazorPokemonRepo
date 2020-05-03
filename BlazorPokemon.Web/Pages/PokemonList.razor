@@ -1,7 +1,7 @@
 ﻿@page "/"
 @inherits PokemonListBase
 
-<h3>Pokemons Selected: @SelectedEmployeesCount</h3>
+<h3>Pokemons Selected: @SelectedPokemonsCount</h3>
 
 @if (Pokemons == null)
 {
@@ -14,7 +14,7 @@ else
     <div class="card-deck">
         @foreach (var pokemon in Pokemons)
         {
-            <DisplayPokemon Pokemon="pokemon" ShowFooter="ShowFooter" OnEmployeeSelection="EmployeeSelectionChanged" ></DisplayPokemon>
+            <DisplayPokemon Pokemon="pokemon" ShowFooter="ShowFooter" OnPokemonSelection="PokemonSelectionChanged" ></DisplayPokemon>
         }
     </div>
 }

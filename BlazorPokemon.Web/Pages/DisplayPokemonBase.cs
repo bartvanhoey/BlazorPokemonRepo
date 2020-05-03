@@ -11,10 +11,10 @@ namespace BlazorPokemon.Web.Pages
         [Parameter]
         public bool ShowFooter { get; set; }
         [Parameter]
-        public EventCallback<bool> OnEmployeeSelection { get; set; }
+        public EventCallback<bool> OnPokemonSelection { get; set; }
 
         public async Task CheckBoxChanged(ChangeEventArgs e){
-              await OnEmployeeSelection.InvokeAsync( (bool) e.Value);
+              await OnPokemonSelection.InvokeAsync( (bool) e.Value);
         }
     }
 }
