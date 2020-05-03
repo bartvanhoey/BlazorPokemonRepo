@@ -31,9 +31,10 @@ namespace BlazorPokemon.Models
 
         public int PokemonId { get; set; }
         public int PokemonNumber { get; set; }
-        [Required]
+        [Required(ErrorMessage="You must provide a Name")]
         [MinLength(2)]
         public string Name { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
