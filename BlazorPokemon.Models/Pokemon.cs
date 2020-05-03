@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorPokemon.Models
@@ -33,10 +34,10 @@ namespace BlazorPokemon.Models
         [Required]
         [MinLength(2)]
         public string Name { get; set; }
-
-
+        public string Email { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public Gender Gender { get; set; }
         public int? TypeOneId { get; set; }
-
         public int? TypeTwoId { get; set; }
         public int Total { get; set; }
         public int HP { get; set; }
