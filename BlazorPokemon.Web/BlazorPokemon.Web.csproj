@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BlazorPokemon.Api\BlazorPokemon.Api.csproj" />
     <ProjectReference Include="..\BlazorPokemon.Models\BlazorPokemon.Models.csproj" />
+    <ProjectReference Include="..\PragimTech.Components\PragimTech.Components.csproj" />
   </ItemGroup>
 
 </Project>
