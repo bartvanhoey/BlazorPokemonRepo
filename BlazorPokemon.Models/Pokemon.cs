@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlazorPokemon.Models.CustomValidators;
 
 namespace BlazorPokemon.Models
 {
@@ -31,10 +32,11 @@ namespace BlazorPokemon.Models
 
         public int PokemonId { get; set; }
         public int PokemonNumber { get; set; }
-        [Required(ErrorMessage="You must provide a Name")]
+        [Required(ErrorMessage = "You must provide a Name")]
         [MinLength(2)]
         public string Name { get; set; }
         [EmailAddress]
+        [EmailDomainValidator(AllowedDomain = "PragimTech.com", ErrorMessage = "Only PragimTech.com is an allowed Domain")]
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
@@ -50,7 +52,7 @@ namespace BlazorPokemon.Models
         public int Generation { get; set; }
         public bool Legendary { get; set; }
         public string PhotoPath { get; set; }
-       
+
         public PokemonType TypeOne { get; set; }
         public PokemonType TypeTwo { get; set; }
     }
