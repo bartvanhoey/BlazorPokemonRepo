@@ -1,7 +1,7 @@
 @page "/editpokemon/{id}" 
 @inherits EditPokemonBase
 
-<EditForm Model="@Pokemon">
+<EditForm Model="@EditPokemonModel" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     <h3>Edit Pokemon</h3>
@@ -10,23 +10,31 @@
         <label for="name" class="col-sm-2 col-form-label" >Name</label>
         <div class="col-sm-10">
             <InputText id="name" class="form-control" placeholder="Name" 
-                        @bind-Value="Pokemon.Name"></InputText>
-            <ValidationMessage  For="(() => Pokemon.Name)"/>
+                        @bind-Value="EditPokemonModel.Name"></InputText>
+            <ValidationMessage  For="(() => EditPokemonModel.Name)"/>
         </div>
     </div> 
-     <hr>
+     
     <div class="form-group row">
         <label for="email" class="col-sm-2 col-form-label" >Email</label>
         <div class="col-sm-10">
             <InputText id="email" class="form-control" placeholder="Email" 
-                        @bind-Value="Pokemon.Email"></InputText>
-            <ValidationMessage  For="(() => Pokemon.Email)"/>
+                        @bind-Value="EditPokemonModel.Email"></InputText>
+            <ValidationMessage  For="(() => EditPokemonModel.Email)"/>
         </div>
     </div> 
     <div class="form-group row">
+        <label for="confirmEmail" class="col-sm-2 col-form-label" >Confirm Email</label>
+        <div class="col-sm-10">
+            <InputText id="confirmEmail" class="form-control" placeholder="Confirm Email" 
+                        @bind-Value="EditPokemonModel.ConfirmEmail"></InputText>
+            <ValidationMessage  For="(() => EditPokemonModel.ConfirmEmail)"/>
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="typeOne" class="col-sm-2 col-form-label">Type One</label>
         <div class="col-sm-10">
-            <CustomInputSelect id="typeOne" @bind-Value="Pokemon.TypeOneId" class="form-control" >
+            <CustomInputSelect id="typeOne" @bind-Value="EditPokemonModel.TypeOneId" class="form-control" >
                   @foreach (var type in PokemonTypes)
                   {
                       <option value="@type.PokemonTypeId">@type.Value</option>
@@ -37,7 +45,7 @@
     <div class="form-group row">
         <label for="typeTwo" class="col-sm-2 col-form-label">Type Two</label>
         <div class="col-sm-10">
-            <CustomInputSelect id="typeTwo" @bind-Value="Pokemon.TypeTwoId" class="form-control" >
+            <CustomInputSelect id="typeTwo" @bind-Value="EditPokemonModel.TypeTwoId" class="form-control" >
                   @foreach (var type in PokemonTypes)
                   {
                       <option value="@type.PokemonTypeId">@type.Value</option>
@@ -46,10 +54,10 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="gender" class="col-sm-2 col-form-label">Gendere</label>
+        <label for="gender" class="col-sm-2 col-form-label">Gender</label>
         <div class="col-sm-10">
-            <InputSelect id="gender" @bind-Value="Pokemon.Gender" class="form-control" >
-                  @foreach (var gender in Enum.GetValues(typeof(Models.Gender)))
+            <InputSelect id="gender" @bind-Value="EditPokemonModel.Gender" class="form-control" >
+                  @foreach (var gender in Enum.GetValues(typeof(BlazorPokemon.Models.Gender)))
                   {
                       <option value="@gender">@gender</option>
                   }          
@@ -59,11 +67,11 @@
     <div class="form-group row">
         <label for="dateOfBirth" class="col-sm-2 col-form-label">Date Of Birth</label>
         <div class="col-sm-10">
-            <InputDate @bind-Value="Pokemon.DateOfBirth" class="form-control"></InputDate>
+            <InputDate @bind-Value="EditPokemonModel.DateOfBirth" class="form-control"></InputDate>
         </div>    
-        
     </div>
 
+    <button class="btn btn-primary" type="submit">Submit</button>
 </EditForm>
 
 
