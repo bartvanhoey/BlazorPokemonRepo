@@ -31,7 +31,8 @@ namespace BlazorPokemon.Web.Models
         public int Generation { get; set; }
         public bool Legendary { get; set; }
         public string PhotoPath { get; set; }
-        public PokemonType TypeOne { get; set; }
+        [ValidateComplexType]
+        public PokemonType TypeOne { get; set; } = new PokemonType();
         public PokemonType TypeTwo { get; set; }
     }
 }

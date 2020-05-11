@@ -2,7 +2,7 @@
 @inherits EditPokemonBase
 
 <EditForm Model="@EditPokemonModel" OnValidSubmit="HandleValidSubmit">
-    <DataAnnotationsValidator/>
+    <ObjectGraphDataAnnotationsValidator/>
     <ValidationSummary/>
     <h3>Edit Pokemon</h3>
     <hr>
@@ -14,7 +14,6 @@
             <ValidationMessage  For="(() => EditPokemonModel.Name)"/>
         </div>
     </div> 
-     
     <div class="form-group row">
         <label for="email" class="col-sm-2 col-form-label" >Email</label>
         <div class="col-sm-10">
@@ -70,6 +69,14 @@
             <InputDate @bind-Value="EditPokemonModel.DateOfBirth" class="form-control"></InputDate>
         </div>    
     </div>
+    <div class="form-group row">
+        <label for="typeOneValue" class="col-sm-2 col-form-label" >Name</label>
+        <div class="col-sm-10">
+            <InputText id="typeOneValue" class="form-control" placeholder="TypeOne Value" 
+                        @bind-Value="EditPokemonModel.TypeOne.Value"></InputText>
+            <ValidationMessage  For="(() => EditPokemonModel.TypeOne.Value)"/>
+        </div>
+    </div> 
 
     <button class="btn btn-primary" type="submit">Submit</button>
 </EditForm>
