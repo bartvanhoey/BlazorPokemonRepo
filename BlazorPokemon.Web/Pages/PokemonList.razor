@@ -3,6 +3,7 @@
 
 <h3>Pokemons Selected: @SelectedPokemonsCount</h3>
 
+
 @if (Pokemons == null)
 {
     <div class="spinner"></div>
@@ -17,4 +18,6 @@ else
             <DisplayPokemon Pokemon="pokemon" ShowFooter="ShowFooter" OnPokemonSelection="PokemonSelectionChanged" ></DisplayPokemon>
         }
     </div>
+
+
 }

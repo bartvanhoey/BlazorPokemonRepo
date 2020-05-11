@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BlazorPokemon.Web.Models;
 using BlazorPokemon.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -28,6 +30,8 @@ namespace BlazorPokemon.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddAutoMapper(typeof(EditPokemonProfile));
+
             services.AddHttpClient<IPokemonService, PokemonService>(client => {
                 client.BaseAddress = new Uri("https://localhost:53956/");
             });
