@@ -16,8 +16,9 @@ namespace BlazorPokemon.Models.CustomValidators
                 {
                     return null;
                 }
+                return new ValidationResult(ErrorMessage, new[] { validationContext.MemberName });
             }
-            return new ValidationResult(ErrorMessage, new[] { validationContext.MemberName });
+            return null;
         }
     }
 }

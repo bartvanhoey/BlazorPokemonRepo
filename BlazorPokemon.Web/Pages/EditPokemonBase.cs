@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,16 +25,41 @@ namespace BlazorPokemon.Web.Pages
         public string Id { get; set; }
         [Inject]
         public IMapper Mapper { get; set; }
-        
-        protected async override Task OnInitializedAsync() {
-            Pokemon = await PokemonService.GetPokemon(int.Parse(Id));
+
+        protected async override Task OnInitializedAsync()
+        {
+            int.TryParse(Id, out int pokemonId);
+
+            if (pokemonId != 0)
+            {
+                Pokemon = await PokemonService.GetPokemon(int.Parse(Id));
+            }
+            else
+            {
+                Pokemon = new Pokemon
+                {
+                    TypeOneId = 1,
+                    DateOfBirth = DateTime.Now,
+                    PhotoPath = "images/nophoto.jpg"
+                };
+            }
             PokemonTypes = (await PokemonTypeService.GetPokemonTypes()).ToList();
             Mapper.Map(Pokemon, EditPokemonModel);
         }
 
-        protected async Task HandleValidSubmitAsync(){
+        protected async Task HandleValidSubmitAsync()
+        {
             Mapper.Map(EditPokemonModel, Pokemon);
-            var result = await PokemonService.UpdatePokemon(Pokemon);
+            Pokemon result = null;
+            if (Pokemon.PokemonId != 0)
+            {
+                result = await PokemonService.UpdatePokemon(Pokemon);
+            }
+            else
+            {
+                result = await PokemonService.CreatePokemon(Pokemon);
+            }
+
             if (result != null)
             {
                 NavigationManager.NavigateTo("/");
