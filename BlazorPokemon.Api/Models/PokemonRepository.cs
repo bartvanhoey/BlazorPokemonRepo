@@ -52,6 +52,9 @@ namespace BlazorPokemon.Api.Models
                 result.PhotoPath = pokemon.PhotoPath;
                 result.TypeOneId = pokemon.TypeOneId;
                 result.TypeTwoId = pokemon.TypeTwoId;
+                result.Email = pokemon.Email;
+                result.Gender = pokemon.Gender;
+                result.DateOfBirth = pokemon.DateOfBirth;
                 result.Legendary = pokemon.Legendary;
                 result.HP = pokemon.HP;
                 result.Defense = pokemon.Defense;

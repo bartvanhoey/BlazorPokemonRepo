@@ -8,5 +8,6 @@ namespace BlazorPokemon.Web.Services
     {
            Task<IEnumerable<Pokemon>> GetPokemons();
            Task<Pokemon> GetPokemon(int id);
+           Task<Pokemon> UpdatePokemon(Pokemon pokemon);
     }
 }

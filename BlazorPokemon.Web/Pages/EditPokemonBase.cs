@@ -13,10 +13,10 @@ namespace BlazorPokemon.Web.Pages
     {
         [Inject]
         public IPokemonService PokemonService { get; set; }
-
         [Inject]
         public IPokemonTypeService PokemonTypeService { get; set; }
-
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
         private Pokemon Pokemon { get; set; } = new Pokemon();
         public EditPokemonModel EditPokemonModel { get; set; } = new EditPokemonModel();
         public List<PokemonType> PokemonTypes { get; set; } = new List<PokemonType>();
@@ -28,19 +28,16 @@ namespace BlazorPokemon.Web.Pages
         protected async override Task OnInitializedAsync() {
             Pokemon = await PokemonService.GetPokemon(int.Parse(Id));
             PokemonTypes = (await PokemonTypeService.GetPokemonTypes()).ToList();
-
             Mapper.Map(Pokemon, EditPokemonModel);
-
-            // EditPokemonModel.PokemonId = Pokemon.PokemonId;
-            // EditPokemonModel.Name = Pokemon.Name;
-            // EditPokemonModel.Email = Pokemon.Email;
-            // EditPokemonModel.ConfirmEmail = Pokemon.Email;
-            // EditPokemonModel.TypeOne = Pokemon.TypeOne;
-            // EditPokemonModel.TypeTwo = Pokemon.TypeTwo;
-            // EditPokemonModel.Gender = Pokemon.Gender;
-            // EditPokemonModel.DateOfBirth = Pokemon.DateOfBirth;
         }
 
-        protected void HandleValidSubmit(){}
+        protected async Task HandleValidSubmitAsync(){
+            Mapper.Map(EditPokemonModel, Pokemon);
+            var result = await PokemonService.UpdatePokemon(Pokemon);
+            if (result != null)
+            {
+                NavigationManager.NavigateTo("/");
+            }
+        }
     }
 }
