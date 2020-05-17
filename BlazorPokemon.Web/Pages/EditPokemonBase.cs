@@ -67,5 +67,11 @@ namespace BlazorPokemon.Web.Pages
                 NavigationManager.NavigateTo("/");
             }
         }
+
+        protected async Task DeletePokemon()
+        {
+            await PokemonService.DeletePokemon(EditPokemonModel.PokemonId);
+            NavigationManager.NavigateTo("/");
+        }
     }
 }

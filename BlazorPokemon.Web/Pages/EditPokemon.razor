@@ -40,7 +40,7 @@
                       <option value="@type.PokemonTypeId">@type.Value</option>
                   }          
             </CustomInputSelect>
-        </div>
+        </div>  
     </div>
     <div class="form-group row">
         <label for="gender" class="col-sm-2 col-form-label">Gender</label>
@@ -60,6 +60,10 @@
         </div>    
     </div>
     <button class="btn btn-primary" type="submit">Submit</button>
+    @if (EditPokemonModel.PokemonId != 0)
+    {
+        <button class="btn btn-danger" type="button" @onclick="DeletePokemon" >Delete</button>
+    }
 </EditForm>
 
 

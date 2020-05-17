@@ -10,5 +10,6 @@ namespace BlazorPokemon.Web.Services
            Task<Pokemon> GetPokemon(int id);
            Task<Pokemon> UpdatePokemon(Pokemon pokemon);
            Task<Pokemon> CreatePokemon(Pokemon pokemon);
+           Task DeletePokemon(int id);
     }
 }
