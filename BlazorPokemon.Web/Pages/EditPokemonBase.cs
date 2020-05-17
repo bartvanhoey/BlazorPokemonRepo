@@ -13,6 +13,8 @@ namespace BlazorPokemon.Web.Pages
     public class EditPokemonBase : ComponentBase
     {
         [Inject]
+        public IMapper Mapper { get; set; }
+        [Inject]
         public IPokemonService PokemonService { get; set; }
         [Inject]
         public IPokemonTypeService PokemonTypeService { get; set; }
@@ -23,19 +25,19 @@ namespace BlazorPokemon.Web.Pages
         public List<PokemonType> PokemonTypes { get; set; } = new List<PokemonType>();
         [Parameter]
         public string Id { get; set; }
-        [Inject]
-        public IMapper Mapper { get; set; }
-
+        public string PageHeader { get; set; }
         protected async override Task OnInitializedAsync()
         {
             int.TryParse(Id, out int pokemonId);
 
             if (pokemonId != 0)
             {
+                PageHeader = "Edit Pokemon";
                 Pokemon = await PokemonService.GetPokemon(int.Parse(Id));
             }
             else
             {
+                PageHeader = "Create Pokemon";
                 Pokemon = new Pokemon
                 {
                     TypeOneId = 1,
