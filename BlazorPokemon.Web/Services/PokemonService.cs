@@ -20,6 +20,11 @@ namespace BlazorPokemon.Web.Services
             return await httpClient.PostJsonAsync<Pokemon>($"api/pokemons", pokemon);
         }
 
+        public async Task DeletePokemon(int id)
+        {
+            await httpClient.DeleteAsync($"api/pokemons/{id}");
+        }
+
         public async Task<Pokemon> GetPokemon(int id)
         {
             return await httpClient.GetJsonAsync<Pokemon>($"api/pokemons/{id}");
