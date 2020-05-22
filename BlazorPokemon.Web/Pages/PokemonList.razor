@@ -15,7 +15,7 @@ else
     <div class="card-deck">
         @foreach (var pokemon in Pokemons)
         {
-            <DisplayPokemon Pokemon="pokemon" ShowFooter="ShowFooter" OnPokemonSelection="PokemonSelectionChanged" ></DisplayPokemon>
+            <DisplayPokemon Pokemon="pokemon" ShowFooter="ShowFooter" OnPokemonDelete="Pokemon_Deleted" OnPokemonSelection="PokemonSelectionChanged" ></DisplayPokemon>
         }
     </div>
 

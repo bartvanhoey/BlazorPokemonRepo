@@ -24,6 +24,11 @@ namespace BlazorPokemon.Web.Pages
             Pokemons = (await PokemonService.GetPokemons()).ToList();
         }
 
+        protected async Task Pokemon_Deleted()
+        {
+            Pokemons = (await PokemonService.GetPokemons()).ToList();
+        }
+
         protected void PokemonSelectionChanged(bool isSelected) {
             if (isSelected)
             {
